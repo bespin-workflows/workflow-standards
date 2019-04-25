@@ -1,7 +1,6 @@
-bespin-workflows standards
-==========================
+# workflow-standards
 
-This repository contains information and supporting scripts to maintain consistent, standardized CWL workflows in git repositories
+This repository contains information and supporting scripts to maintain consistent, standardized CWL workflows in git repositories for running in [bespin](https://github.com/Duke-GCB/bespin)
 
 ## Workflow and Repository Structure
 
