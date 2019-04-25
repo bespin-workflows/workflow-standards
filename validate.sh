@@ -77,7 +77,7 @@ ls ${REPO}/*.cwl > /dev/null
 for workflow in ${REPO}/*.cwl; do
   WORKFLOW_TAG=$(basename -s .cwl $workflow)
   echo "Attempting to validate $workflow as ${WORKFLOW_TAG}/${VERSION}"
-  bespin workflow-version validate --type local --url "file://${workflow}" --path "" --version "${VERSION}" --workflow-tag "${WORKFLOW_TAG}"
+  bespin workflow-version validate --type direct --url "file://${workflow}" --path "" --version "${VERSION}" --workflow-tag "${WORKFLOW_TAG}"
 done
 
 echo "Succeeded"
