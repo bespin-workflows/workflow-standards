@@ -67,7 +67,7 @@ Example:
 
 ```
 label: exomeseq-gatk4/v2.0.0
-doc: Whole Exome Sequence analysis using GATK4 - v2.0.0`
+doc: Whole Exome Sequence analysis using GATK4 - v2.0.0
 ```
 
 ## Scripts
