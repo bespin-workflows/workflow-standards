@@ -29,7 +29,7 @@ Here, the two workflows are `exomeseq-gatk4.cwl` and `exomeseq-gatk4-preprocessi
 
 ## Development and Release process
 
-Each repository shall have a `develop` branch, and one or more `release-x.y` branches.
+Each repository shall have a `develop` branch, and one or more `release-X.Y` branches.
 
 Changes shall be proposed to the `develop` branch through pull request using the following process:
 
@@ -40,17 +40,18 @@ Changes shall be proposed to the `develop` branch through pull request using the
 Once changes are accepted and merged into `develop`, they may be merged into a release branch:
 
 1. Decide on a new version number, following [Semantic Versioning](http://semver.org)
-2. Merge your changes from `develop` into (or create new) the `release-x.y` branch corresponding to the new  version.
+2. Merge your changes from `develop` into (or create new) the `release-X.Y` branch corresponding to the new  version.
 3. Edit the `.cwl` files in the repo root to indicate the new version in the `doc` and `label` fields. See _Versioning and Metadata__ below.
 4. Create a section in `CHANGELOG.md` for the release, moving items out of the unreleased section
-5. Validate the local repo for the chosen version using the `validate.sh` script.
-6. Upon successful validation, commit the changes and push them to the `release-x.y` remote branch
+5. Validate the local repo for the chosen version using the `validate.sh` script: `validate.sh /path/to/workflow-repo vX.Y.Z`
 
-A GitHub release for the new version should be created from the `release-x.y` branch:
+6. Upon successful validation, commit the changes and push them to the `release-X.Y` remote branch
+
+A GitHub release for the new version should be created from the `release-X.Y` branch:
 
 1. Visit https://github.com/bespin-workflows/workflow-name/releases/new
-2. Enter a version in the format `vx.y.x`, targeting `release-x.y`
-3. Title the release `vx.y.z`
+2. Enter a version in the format `vX.Y.Z`, targeting `release-X.Y`
+3. Title the release `vX.Y.Z`
 4. Paste the version's entry from `CHANGELOG.md` as the description
 5. Publish the release.
 
@@ -73,6 +74,6 @@ doc: Whole Exome Sequence analysis using GATK4 - v2.0.0`
 
 The `validate.sh` script in this repository will validate your repository (and CWL workflows) for these standards. It also checks that other essential files in the git repo are present (e.g. README.md, CHANGELOG.md) and that files have required contents (e.g. CI configs, requriements.txt).
 
-The `validate.sh` script uses https://github.com/duke-gcb/bespin-cli
+The `validate.sh` script uses [bespin-cli](https://github.com/duke-gcb/bespin-cli) to validate workflows.
 
 
