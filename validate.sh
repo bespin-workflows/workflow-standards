@@ -1,12 +1,25 @@
 #!/bin/bash
 
-# Validate a bespin-workflows repo
+# Validate a bespin-workflows repo and contained workflows
 
 set -e
 
 REPO="$1"
 VERSION="$2"
 ERRORS=""
+
+display_usage() {
+	echo "This script is used to validate a local git repo for compliance to bespin-workflows standards."
+	echo "It checks for files that should be in the repo and runs bespin-cli workflow-version validate on each cwl file the repo root"
+	echo -e "\nUsage:\n$0 <repo path> <version string> \n"
+	}
+
+# if less than two arguments supplied, display usage
+if [  $# -le 1 ]
+then
+  display_usage
+  exit 1
+fi
 
 # Check for changelog
 
@@ -62,7 +75,9 @@ ls ${REPO}/*.cwl > /dev/null
 
 # Validate the workflows
 for workflow in ${REPO}/*.cwl; do
-  python bespin/validate_workflow.py $VERSION $workflow
+  WORKFLOW_TAG=$(basename -s .cwl $workflow)
+  echo "Attempting to validate $workflow as ${WORKFLOW_TAG}/${VERSION}"
+  bespin workflow-version validate --type local --url "file://${workflow}" --path "" --version "${VERSION}" --workflow-tag "${WORKFLOW_TAG}"
 done
 
 echo "Succeeded"
